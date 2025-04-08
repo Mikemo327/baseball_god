@@ -1,4 +1,130 @@
 date,game_id,home_team,away_team,venue_id,home_runs,away_runs,home_win,venue_name,venue_city,venue_state,venue_country,venue_timezone,venue_latitude,venue_longitude,venue_altitude,temp,wind_speed,wind_direction,condition
+2025-03-27,778557,Yankees,Brewers,3313,4,2,1,Yankee Stadium,Bronx,New York,USA,America/New_York,40.82919482,-73.9264977,,48,,"17 mph, Out To",Sunny
+2025-03-27,778556,Blue Jays,Orioles,14,2,12,0,Rogers Centre,Toronto,Ontario,Canada,America/Toronto,43.64155,-79.38915,,68,,"0 mph,",Roof Closed
+2025-03-27,778553,Rangers,Red Sox,5325,2,5,0,Globe Life Field,Arlington,Texas,USA,America/Chicago,32.747299,-97.081818,,74,,"0 mph,",Roof Closed
+2025-03-27,778555,Nationals,Phillies,3309,3,7,0,Nationals Park,Washington,District of Columbia,USA,America/New_York,38.872861,-77.007501,,57,,"5 mph, L To",Sunny
+2025-03-27,778558,Royals,Guardians,7,4,7,0,Kauffman Stadium,Kansas City,Missouri,USA,America/Chicago,39.051567,-94.480483,,76,,"12 mph, R To",Partly Cloudy
+2025-03-27,778559,Astros,Mets,2392,3,1,1,Daikin Park,Houston,Texas,USA,America/Chicago,29.756967,-95.355509,,73,,"0 mph,",Roof Closed
+2025-03-27,778561,Reds,Giants,2602,4,6,0,Great American Ball Park,Cincinnati,Ohio,USA,America/New_York,39.097389,-84.506611,,61,,"10 mph, R To",Partly Cloudy
+2025-03-27,778545,Padres,Braves,2680,7,4,1,Petco Park,San Diego,California,USA,America/Los_Angeles,32.707861,-117.157278,,66,,"9 mph, L To",Partly Cloudy
+2025-03-27,778554,White Sox,Angels,4,8,1,1,Rate Field,Chicago,Illinois,USA,America/Chicago,41.83,-87.634167,,54,,"11 mph, In From",Cloudy
+2025-03-27,778562,Marlins,Pirates,4169,5,4,1,loanDepot park,Miami,Florida,USA,America/New_York,25.77796236,-80.21951795,,76,,"7 mph, In From",Sunny
+2025-03-27,778551,Cardinals,Twins,2889,5,3,1,Busch Stadium,St. Louis,Missouri,USA,America/Chicago,38.62256667,-90.19286667,,63,,"8 mph, In From",Cloudy
+2025-03-27,778546,Dodgers,Tigers,22,5,4,1,Dodger Stadium,Los Angeles,California,USA,America/Los_Angeles,34.07368,-118.24053,,69,,"3 mph, Out To",Partly Cloudy
+2025-03-27,778552,Diamondbacks,Cubs,15,6,10,0,Chase Field,Phoenix,Arizona,USA,America/Phoenix,33.445302,-112.066687,,87,,"6 mph, L To",Clear
+2025-03-27,778547,Mariners,Athletics,680,4,2,1,T-Mobile Park,Seattle,Washington,USA,America/Los_Angeles,47.591333,-122.33251,,55,,"0 mph,",Roof Closed
+2025-03-28,778560,Rays,Rockies,2523,3,2,1,George M. Steinbrenner Field,Tampa,Florida,USA,America/New_York,27.97997,-82.50702,,84,,"14 mph, R To",Partly Cloudy
+2025-03-28,778549,Blue Jays,Orioles,14,8,2,1,Rogers Centre,Toronto,Ontario,Canada,America/Toronto,43.64155,-79.38915,,72,,"0 mph,",Roof Closed
+2025-03-28,778548,Marlins,Pirates,4169,3,4,0,loanDepot park,Miami,Florida,USA,America/New_York,25.77796236,-80.21951795,,77,,"15 mph, In From",Partly Cloudy
+2025-03-28,778550,Rangers,Red Sox,5325,4,1,1,Globe Life Field,Arlington,Texas,USA,America/Chicago,32.747299,-97.081818,,74,,"0 mph,",Roof Closed
+2025-03-28,778518,Astros,Mets,2392,1,3,0,Daikin Park,Houston,Texas,USA,America/Chicago,29.756967,-95.355509,,73,,"0 mph,",Roof Closed
+2025-03-28,778543,Diamondbacks,Cubs,15,8,1,1,Chase Field,Phoenix,Arizona,USA,America/Phoenix,33.445302,-112.066687,,80,,"7 mph, L To",Partly Cloudy
+2025-03-28,778541,Mariners,Athletics,680,0,7,0,T-Mobile Park,Seattle,Washington,USA,America/Los_Angeles,47.591333,-122.33251,,52,,"6 mph, Out To",Roof Closed
+2025-03-28,778542,Padres,Braves,2680,4,3,1,Petco Park,San Diego,California,USA,America/Los_Angeles,32.707861,-117.157278,,59,,"8 mph, L To",Partly Cloudy
+2025-03-28,778544,Dodgers,Tigers,22,8,5,1,Dodger Stadium,Los Angeles,California,USA,America/Los_Angeles,34.07368,-118.24053,,61,,"7 mph, Out To",Cloudy
+2025-03-29,778538,Yankees,Brewers,3313,20,9,1,Yankee Stadium,Bronx,New York,USA,America/New_York,40.82919482,-73.9264977,,78,,"15 mph, Out To",Partly Cloudy
+2025-03-29,778534,White Sox,Angels,4,0,1,0,Rate Field,Chicago,Illinois,USA,America/Chicago,41.83,-87.634167,,67,,"14 mph, In From",Partly Cloudy
+2025-03-29,778528,Cardinals,Twins,2889,5,1,1,Busch Stadium,St. Louis,Missouri,USA,America/Chicago,38.62256667,-90.19286667,,68,,"10 mph, Out To",Cloudy
+2025-03-29,778536,Blue Jays,Orioles,14,5,9,0,Rogers Centre,Toronto,Ontario,Canada,America/Toronto,43.64155,-79.38915,,68,,"0 mph,",Roof Closed
+2025-03-29,778535,Nationals,Phillies,3309,6,11,0,Nationals Park,Washington,District of Columbia,USA,America/New_York,38.872861,-77.007501,,81,,"7 mph, Out To",Overcast
+2025-03-29,778529,Royals,Guardians,7,4,3,1,Kauffman Stadium,Kansas City,Missouri,USA,America/Chicago,39.051567,-94.480483,,77,,"17 mph, R To",Partly Cloudy
+2025-03-29,778540,Reds,Giants,2602,3,2,1,Great American Ball Park,Cincinnati,Ohio,USA,America/New_York,39.097389,-84.506611,,76,,"14 mph, In From",Partly Cloudy
+2025-03-29,778537,Rays,Rockies,2523,1,2,0,George M. Steinbrenner Field,Tampa,Florida,USA,America/New_York,27.97997,-82.50702,,84,,"7 mph, In From",Partly Cloudy
+2025-03-29,778539,Marlins,Pirates,4169,5,4,1,loanDepot park,Miami,Florida,USA,America/New_York,25.77796236,-80.21951795,,72,,"0 mph,",Roof Closed
+2025-03-29,778531,Rangers,Red Sox,5325,4,3,1,Globe Life Field,Arlington,Texas,USA,America/Chicago,32.747299,-97.081818,,74,,"0 mph,",Roof Closed
+2025-03-29,778530,Astros,Mets,2392,2,1,1,Daikin Park,Houston,Texas,USA,America/Chicago,29.756967,-95.355509,,73,,"0 mph,",Roof Closed
+2025-03-29,778520,Padres,Braves,2680,1,0,1,Petco Park,San Diego,California,USA,America/Los_Angeles,32.707861,-117.157278,,62,,"9 mph, L To",Partly Cloudy
+2025-03-29,778532,Diamondbacks,Cubs,15,3,4,0,Chase Field,Phoenix,Arizona,USA,America/Phoenix,33.445302,-112.066687,,79,,"2 mph, In From",Clear
+2025-03-29,778533,Dodgers,Tigers,22,7,3,1,Dodger Stadium,Los Angeles,California,USA,America/Los_Angeles,34.07368,-118.24053,,63,,"1 mph, L To",Partly Cloudy
+2025-03-29,778521,Mariners,Athletics,680,2,4,0,T-Mobile Park,Seattle,Washington,USA,America/Los_Angeles,47.591333,-122.33251,,56,,"2 mph, Out To",Partly Cloudy
+2025-03-30,778526,Nationals,Phillies,3309,5,1,1,Nationals Park,Washington,District of Columbia,USA,America/New_York,38.872861,-77.007501,,79,,"16 mph, Out To",Partly Cloudy
+2025-03-30,778523,Yankees,Brewers,3313,12,3,1,Yankee Stadium,Bronx,New York,USA,America/New_York,40.82919482,-73.9264977,,44,,"10 mph, In From",Partly Cloudy
+2025-03-30,778525,Blue Jays,Orioles,14,3,1,1,Rogers Centre,Toronto,Ontario,Canada,America/Toronto,43.64155,-79.38915,,68,,"0 mph,",Roof Closed
+2025-03-30,778522,Reds,Giants,2602,3,6,0,Great American Ball Park,Cincinnati,Ohio,USA,America/New_York,39.097389,-84.506611,,69,,"12 mph, R To",Cloudy
+2025-03-30,778524,Rays,Rockies,2523,6,4,1,George M. Steinbrenner Field,Tampa,Florida,USA,America/New_York,27.97997,-82.50702,,80,,"12 mph, R To",Partly Cloudy
+2025-03-30,778519,Marlins,Pirates,4169,3,2,1,loanDepot park,Miami,Florida,USA,America/New_York,25.77796236,-80.21951795,,72,,"0 mph,",Roof Closed
+2025-03-30,778510,Royals,Guardians,7,2,6,0,Kauffman Stadium,Kansas City,Missouri,USA,America/Chicago,39.051567,-94.480483,,45,,"14 mph, L To",Partly Cloudy
+2025-03-30,778527,White Sox,Angels,4,2,3,0,Rate Field,Chicago,Illinois,USA,America/Chicago,41.83,-87.634167,,76,,"7 mph, R To",Partly Cloudy
+2025-03-30,778517,Cardinals,Twins,2889,9,2,1,Busch Stadium,St. Louis,Missouri,USA,America/Chicago,38.62256667,-90.19286667,,74,,"14 mph, R To",Partly Cloudy
+2025-03-30,778516,Rangers,Red Sox,5325,3,2,1,Globe Life Field,Arlington,Texas,USA,America/Chicago,32.747299,-97.081818,,74,,"0 mph,",Roof Closed
+2025-03-30,778515,Diamondbacks,Cubs,15,10,6,1,Chase Field,Phoenix,Arizona,USA,America/Phoenix,33.445302,-112.066687,,79,,"6 mph,",Sunny
+2025-03-30,778513,Mariners,Athletics,680,2,1,1,T-Mobile Park,Seattle,Washington,USA,America/Los_Angeles,47.591333,-122.33251,,59,,"2 mph, R To",Partly Cloudy
+2025-03-30,778514,Padres,Braves,2680,5,0,1,Petco Park,San Diego,California,USA,America/Los_Angeles,32.707861,-117.157278,,63,,"10 mph, L To",Partly Cloudy
+2025-03-31,778506,White Sox,Twins,4,9,0,1,Rate Field,Chicago,Illinois,USA,America/Chicago,41.83,-87.634167,,39,,"12 mph, Out To",Cloudy
+2025-03-31,778504,Brewers,Royals,32,1,11,0,American Family Field,Milwaukee,Wisconsin,USA,America/Chicago,43.02838,-87.97099,,65,,"0 mph,",Roof Closed
+2025-03-31,778512,Orioles,Red Sox,2,8,5,1,Oriole Park at Camden Yards,Baltimore,Maryland,USA,America/New_York,39.283787,-76.621689,,82,,"6 mph, Out To",Partly Cloudy
+2025-03-31,778502,Phillies,Rockies,2681,6,1,1,Citizens Bank Park,Philadelphia,Pennsylvania,USA,America/New_York,39.90539086,-75.16716957,,77,,"16 mph, Out To",Partly Cloudy
+2025-03-31,778511,Reds,Rangers,2602,14,3,1,Great American Ball Park,Cincinnati,Ohio,USA,America/New_York,39.097389,-84.506611,,44,,"10 mph, Out To",Cloudy
+2025-03-31,778509,Marlins,Mets,4169,4,10,0,loanDepot park,Miami,Florida,USA,America/New_York,25.77796236,-80.21951795,,72,,"0 mph,",Roof Closed
+2025-03-31,778508,Rays,Pirates,2523,6,1,1,George M. Steinbrenner Field,Tampa,Florida,USA,America/New_York,27.97997,-82.50702,,79,,"10 mph, Out To",Partly Cloudy
+2025-03-31,778507,Blue Jays,Nationals,14,5,2,1,Rogers Centre,Toronto,Ontario,Canada,America/Toronto,43.64155,-79.38915,,68,,"0 mph,",Roof Closed
+2025-03-31,778503,Cardinals,Angels,2889,4,5,0,Busch Stadium,St. Louis,Missouri,USA,America/Chicago,38.62256667,-90.19286667,,52,,"7 mph, L To",Partly Cloudy
+2025-03-31,778505,Astros,Giants,2392,2,7,0,Daikin Park,Houston,Texas,USA,America/Chicago,29.756967,-95.355509,,73,,"0 mph,",Roof Closed
+2025-03-31,778499,Padres,Guardians,2680,7,2,1,Petco Park,San Diego,California,USA,America/Los_Angeles,32.707861,-117.157278,,60,,"7 mph, L To",Cloudy
+2025-03-31,778496,Mariners,Tigers,680,6,9,0,T-Mobile Park,Seattle,Washington,USA,America/Los_Angeles,47.591333,-122.33251,,47,,"0 mph,",Roof Closed
+2025-03-31,778501,Athletics,Cubs,2529,3,18,0,Sutter Health Park,Sacramento,California,USA,America/Los_Angeles,38.57994,-121.51246,,52,,"12 mph,",Partly Cloudy
+2025-03-31,778500,Dodgers,Braves,22,6,1,1,Dodger Stadium,Los Angeles,California,USA,America/Los_Angeles,34.07368,-118.24053,,59,,"4 mph, Out To",Partly Cloudy
+2025-04-01,778498,Reds,Rangers,2602,0,1,0,Great American Ball Park,Cincinnati,Ohio,USA,America/New_York,39.097389,-84.506611,,55,,"6 mph, In From",Partly Cloudy
+2025-04-01,778497,Marlins,Mets,4169,4,2,1,loanDepot park,Miami,Florida,USA,America/New_York,25.77796236,-80.21951795,,81,,"8 mph, In From",Cloudy
+2025-04-01,778493,Rays,Pirates,2523,7,0,1,George M. Steinbrenner Field,Tampa,Florida,USA,America/New_York,27.97997,-82.50702,,85,,"10 mph, Out To",Clear
+2025-04-01,778492,Yankees,Diamondbacks,3313,5,7,0,Yankee Stadium,Bronx,New York,USA,America/New_York,40.82919482,-73.9264977,,50,,"10 mph, Out To",Partly Cloudy
+2025-04-01,778491,Blue Jays,Nationals,14,5,3,1,Rogers Centre,Toronto,Ontario,Canada,America/Toronto,43.64155,-79.38915,,68,,"0 mph,",Roof Closed
+2025-04-01,778490,White Sox,Twins,4,3,8,0,Rate Field,Chicago,Illinois,USA,America/Chicago,41.83,-87.634167,,42,,"14 mph, In From",Cloudy
+2025-04-01,778488,Brewers,Royals,32,5,0,1,American Family Field,Milwaukee,Wisconsin,USA,America/Chicago,43.02838,-87.97099,,63,,"0 mph,",Roof Closed
+2025-04-01,778495,Cardinals,Angels,2889,7,9,0,Busch Stadium,St. Louis,Missouri,USA,America/Chicago,38.62256667,-90.19286667,,59,,"17 mph, R To",Cloudy
+2025-04-01,778489,Astros,Giants,2392,1,3,0,Daikin Park,Houston,Texas,USA,America/Chicago,29.756967,-95.355509,,73,,"0 mph,",Roof Closed
+2025-04-01,778485,Padres,Guardians,2680,7,0,1,Petco Park,San Diego,California,USA,America/Los_Angeles,32.707861,-117.157278,,61,,"11 mph, In From",Partly Cloudy
+2025-04-01,778486,Mariners,Tigers,680,1,4,0,T-Mobile Park,Seattle,Washington,USA,America/Los_Angeles,47.591333,-122.33251,,53,,"5 mph, Out To",Roof Closed
+2025-04-01,778494,Athletics,Cubs,2529,4,7,0,Sutter Health Park,Sacramento,California,USA,America/Los_Angeles,38.57994,-121.51246,,55,,"12 mph, Out To",Partly Cloudy
+2025-04-01,778487,Dodgers,Braves,22,3,1,1,Dodger Stadium,Los Angeles,California,USA,America/Los_Angeles,34.07368,-118.24053,,60,,"12 mph, Out To",Partly Cloudy
+2025-04-02,778480,Reds,Rangers,2602,0,1,0,Great American Ball Park,Cincinnati,Ohio,USA,America/New_York,39.097389,-84.506611,,71,,"16 mph, R To",Partly Cloudy
+2025-04-02,778479,Rays,Pirates,2523,2,4,0,George M. Steinbrenner Field,Tampa,Florida,USA,America/New_York,27.97997,-82.50702,,89,,"13 mph, R To",Sunny
+2025-04-02,778477,Brewers,Royals,32,3,2,1,American Family Field,Milwaukee,Wisconsin,USA,America/Chicago,43.02838,-87.97099,,64,,"0 mph,",Roof Closed
+2025-04-02,778473,Cardinals,Angels,2889,12,5,1,Busch Stadium,St. Louis,Missouri,USA,America/Chicago,38.62256667,-90.19286667,,75,,"25 mph, Out To",Overcast
+2025-04-02,778474,White Sox,Twins,4,1,6,0,Rate Field,Chicago,Illinois,USA,America/Chicago,41.83,-87.634167,,61,,"11 mph, In From",Partly Cloudy
+2025-04-02,778478,Blue Jays,Nationals,14,4,2,1,Rogers Centre,Toronto,Ontario,Canada,America/Toronto,43.64155,-79.38915,,68,,"0 mph,",Roof Closed
+2025-04-02,778471,Athletics,Cubs,2529,2,10,0,Sutter Health Park,Sacramento,California,USA,America/Los_Angeles,38.57994,-121.51246,,57,,"6 mph, L To",Sunny
+2025-04-02,778476,Padres,Guardians,2680,5,2,1,Petco Park,San Diego,California,USA,America/Los_Angeles,32.707861,-117.157278,,60,,"16 mph, L To",Partly Cloudy
+2025-04-02,778469,Mariners,Tigers,680,3,2,1,T-Mobile Park,Seattle,Washington,USA,America/Los_Angeles,47.591333,-122.33251,,50,,"0 mph,",Roof Closed
+2025-04-02,778475,Astros,Giants,2392,3,6,0,Daikin Park,Houston,Texas,USA,America/Chicago,29.756967,-95.355509,,73,,"0 mph,",Roof Closed
+2025-04-02,778481,Marlins,Mets,4169,5,6,0,loanDepot park,Miami,Florida,USA,America/New_York,25.77796236,-80.21951795,,84,,"13 mph, In From",Partly Cloudy
+2025-04-02,778483,Orioles,Red Sox,2,0,3,0,Oriole Park at Camden Yards,Baltimore,Maryland,USA,America/New_York,39.283787,-76.621689,,57,,"5 mph, Out To",Overcast
+2025-04-02,778482,Phillies,Rockies,2681,5,1,1,Citizens Bank Park,Philadelphia,Pennsylvania,USA,America/New_York,39.90539086,-75.16716957,,47,,"14 mph, R To",Cloudy
+2025-04-02,778484,Yankees,Diamondbacks,3313,3,4,0,Yankee Stadium,Bronx,New York,USA,America/New_York,40.82919482,-73.9264977,,42,,"13 mph, R To",Partly Cloudy
+2025-04-02,778472,Dodgers,Braves,22,6,5,1,Dodger Stadium,Los Angeles,California,USA,America/Los_Angeles,34.07368,-118.24053,,63,,"12 mph, Out To",Partly Cloudy
+2025-04-03,778470,Orioles,Red Sox,2,4,8,0,Oriole Park at Camden Yards,Baltimore,Maryland,USA,America/New_York,39.283787,-76.621689,,71,,"12 mph, Out To",Overcast
+2025-04-03,778467,Phillies,Rockies,2681,3,1,1,Citizens Bank Park,Philadelphia,Pennsylvania,USA,America/New_York,39.90539086,-75.16716957,,71,,"12 mph, Out To",Drizzle
+2025-04-03,778462,Twins,Astros,3312,2,5,0,Target Field,Minneapolis,Minnesota,USA,America/Chicago,44.981829,-93.277891,,42,,"9 mph, Out To",Partly Cloudy
+2025-04-03,778466,Yankees,Diamondbacks,3313,9,7,1,Yankee Stadium,Bronx,New York,USA,America/New_York,40.82919482,-73.9264977,,71,,"9 mph, Out To",Cloudy
+2025-04-03,778468,Brewers,Reds,32,1,0,1,American Family Field,Milwaukee,Wisconsin,USA,America/Chicago,43.02838,-87.97099,,61,,"0 mph,",Roof Closed
+2025-04-04,778458,Tigers,White Sox,2394,7,4,1,Comerica Park,Detroit,Michigan,USA,America/Detroit,42.3391151,-83.048695,,50,,"8 mph, L To",Sunny
+2025-04-04,778463,Red Sox,Cardinals,3,13,9,1,Fenway Park,Boston,Massachusetts,USA,America/New_York,42.346456,-71.097441,,67,,"8 mph, L To",Sunny
+2025-04-04,778460,Cubs,Padres,17,3,1,1,Wrigley Field,Chicago,Illinois,USA,America/Chicago,41.948171,-87.655503,,44,,"9 mph, In From",Cloudy
+2025-04-04,778465,Mets,Blue Jays,3289,5,0,1,Citi Field,Flushing,New York,USA,America/New_York,40.75753012,-73.84559155,,69,,"11 mph, L To",Cloudy
+2025-04-04,778456,Rockies,Athletics,19,3,6,0,Coors Field,Denver,Colorado,USA,America/Denver,39.756042,-104.994136,,37,,"13 mph, In From",Snow
+2025-04-04,778461,Pirates,Yankees,31,4,9,0,PNC Park,Pittsburgh,Pennsylvania,USA,America/New_York,40.446904,-80.005753,,58,,"4 mph, In From",Cloudy
+2025-04-04,778444,Giants,Mariners,2395,10,9,1,Oracle Park,San Francisco,California,USA,America/Los_Angeles,37.778383,-122.389448,,62,,"9 mph,",Sunny
+2025-04-04,778457,Nationals,Diamondbacks,3309,4,6,0,Nationals Park,Washington,District of Columbia,USA,America/New_York,38.872861,-77.007501,,72,,"7 mph, In From",Partly Cloudy
+2025-04-04,778459,Phillies,Dodgers,2681,3,2,1,Citizens Bank Park,Philadelphia,Pennsylvania,USA,America/New_York,39.90539086,-75.16716957,,67,,"8 mph, In From",Partly Cloudy
+2025-04-04,778464,Braves,Marlins,4705,10,0,1,Truist Park,Atlanta,Georgia,USA,America/New_York,33.890672,-84.467641,,86,,"8 mph, L To",Cloudy
+2025-04-04,778455,Royals,Orioles,7,8,2,1,Kauffman Stadium,Kansas City,Missouri,USA,America/Chicago,39.051567,-94.480483,,47,,"11 mph, L To",Cloudy
+2025-04-04,778454,Rangers,Rays,5325,5,2,1,Globe Life Field,Arlington,Texas,USA,America/Chicago,32.747299,-97.081818,,74,,"0 mph,",Roof Closed
+2025-04-04,778453,Brewers,Reds,32,3,2,1,American Family Field,Milwaukee,Wisconsin,USA,America/Chicago,43.02838,-87.97099,,66,,"0 mph,",Roof Closed
+2025-04-04,778447,Angels,Guardians,1,6,8,0,Angel Stadium,Anaheim,California,USA,America/Los_Angeles,33.80019044,-117.8823996,,65,,"8 mph, Out To",Clear
+2025-04-05,778445,Tigers,White Sox,2394,7,2,1,Comerica Park,Detroit,Michigan,USA,America/Detroit,42.3391151,-83.048695,,46,,"6 mph, Out To",Cloudy
+2025-04-05,778440,Twins,Astros,3312,6,1,1,Target Field,Minneapolis,Minnesota,USA,America/Chicago,44.981829,-93.277891,,38,,"8 mph, Out To",Sunny
+2025-04-05,778450,Cubs,Padres,17,7,1,1,Wrigley Field,Chicago,Illinois,USA,America/Chicago,41.948171,-87.655503,,49,,"10 mph, In From",Partly Cloudy
+2025-04-05,778452,Nationals,Diamondbacks,3309,4,3,1,Nationals Park,Washington,District of Columbia,USA,America/New_York,38.872861,-77.007501,,73,,"9 mph, Out To",Cloudy
+2025-04-05,778448,Phillies,Dodgers,2681,1,3,0,Citizens Bank Park,Philadelphia,Pennsylvania,USA,America/New_York,39.90539086,-75.16716957,,55,,"9 mph, R To",Cloudy
+2025-04-05,778449,Pirates,Yankees,31,4,10,0,PNC Park,Pittsburgh,Pennsylvania,USA,America/New_York,40.446904,-80.005753,,70,,"10 mph, Out To",Overcast
+2025-04-05,778441,Royals,Orioles,7,1,8,0,Kauffman Stadium,Kansas City,Missouri,USA,America/Chicago,39.051567,-94.480483,,45,,"17 mph, In From",Partly Cloudy
+2025-04-05,778438,Rangers,Rays,5325,6,4,1,Globe Life Field,Arlington,Texas,USA,America/Chicago,32.747299,-97.081818,,74,,"0 mph,",Roof Closed
+2025-04-05,778446,Mets,Blue Jays,3289,3,2,1,Citi Field,Flushing,New York,USA,America/New_York,40.75753012,-73.84559155,,45,,"7 mph, In From",Cloudy
+2025-04-05,778439,Brewers,Reds,32,7,11,0,American Family Field,Milwaukee,Wisconsin,USA,America/Chicago,43.02838,-87.97099,,68,,"0 mph,",Roof Closed
+2025-04-05,778451,Braves,Marlins,4705,0,4,0,Truist Park,Atlanta,Georgia,USA,America/New_York,33.890672,-84.467641,,86,,"8 mph, Out To",Partly Cloudy
+2025-04-05,778442,Rockies,Athletics,19,4,7,0,Coors Field,Denver,Colorado,USA,America/Denver,39.756042,-104.994136,,41,,"3 mph, In From",Clear
+2025-04-05,778436,Giants,Mariners,2395,4,1,1,Oracle Park,San Francisco,California,USA,America/Los_Angeles,37.778383,-122.389448,,66,,"7 mph, Out To",Clear
+2025-04-05,778437,Angels,Guardians,1,10,4,1,Angel Stadium,Anaheim,California,USA,America/Los_Angeles,33.80019044,-117.8823996,,75,,"11 mph, Out To",Clear
 2025-04-06,778429,Nationals,Diamondbacks,3309,5,4,1,Nationals Park,Washington,District of Columbia,USA,America/New_York,38.872861,-77.007501,,59,,"14 mph, In From",Overcast
 2025-04-06,778443,Red Sox,Cardinals,3,5,4,1,Fenway Park,Boston,Massachusetts,USA,America/New_York,42.346456,-71.097441,,47,,"6 mph, L To",Overcast
 2025-04-06,778432,Red Sox,Cardinals,3,18,7,1,Fenway Park,Boston,Massachusetts,USA,America/New_York,42.346456,-71.097441,,53,,"2 mph, Out To",Partly Cloudy

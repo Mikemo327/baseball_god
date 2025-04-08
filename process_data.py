@@ -391,6 +391,111 @@ class BaseballDataProcessor:
         print("Data processing complete!")
         return self.processed_data
 
+    def calculate_pitcher_batter_matchups(self, df):
+        """Calculate historical pitcher vs batter matchup statistics"""
+        matchups = []
+        
+        # Group by pitcher and batter
+        for (pitcher_id, batter_id), group in df.groupby(['player_id', 'batter_id']):
+            if len(group) < 3:  # Skip if less than 3 matchups
+                continue
+            
+            matchup_stats = {
+                'pitcher_id': pitcher_id,
+                'batter_id': batter_id,
+                'total_matchups': len(group),
+                'hits': group['hits'].sum(),
+                'home_runs': group['home_runs'].sum(),
+                'strikeouts': group['strikeouts'].sum(),
+                'walks': group['walks'].sum(),
+                'batting_avg': group['hits'].sum() / group['at_bats'].sum() if group['at_bats'].sum() > 0 else 0,
+                'ops': group['ops'].mean(),
+                'k_rate': group['strikeouts'].sum() / group['plate_appearances'].sum() if group['plate_appearances'].sum() > 0 else 0,
+                'bb_rate': group['walks'].sum() / group['plate_appearances'].sum() if group['plate_appearances'].sum() > 0 else 0
+            }
+            matchups.append(matchup_stats)
+        
+        return pd.DataFrame(matchups)
+
+    def calculate_pitcher_recent_performance(self, df):
+        """Calculate pitcher's performance in last 5-10 games"""
+        recent_stats = []
+        
+        for pitcher_id, group in df[df['is_pitcher']].groupby('player_id'):
+            # Sort by date
+            group = group.sort_values('date')
+            
+            # Calculate rolling statistics
+            group['last_5_era'] = group['era'].rolling(5, min_periods=1).mean()
+            group['last_5_whip'] = group['whip'].rolling(5, min_periods=1).mean()
+            group['last_5_k_per_9'] = group['k_per_9'].rolling(5, min_periods=1).mean()
+            group['last_5_bb_per_9'] = group['bb_per_9'].rolling(5, min_periods=1).mean()
+            group['last_10_era'] = group['era'].rolling(10, min_periods=1).mean()
+            group['last_10_whip'] = group['whip'].rolling(10, min_periods=1).mean()
+            
+            recent_stats.append(group)
+        
+        return pd.concat(recent_stats)
+
+    def calculate_pitcher_splits(self, df):
+        """Calculate pitcher's home/away and weather condition splits"""
+        splits = []
+        
+        for pitcher_id, group in df[df['is_pitcher']].groupby('player_id'):
+            # Home/Away splits
+            home_stats = group[group['team_type'] == 'home'].agg({
+                'era': 'mean',
+                'whip': 'mean',
+                'k_per_9': 'mean',
+                'bb_per_9': 'mean'
+            }).add_prefix('home_')
+            
+            away_stats = group[group['team_type'] == 'away'].agg({
+                'era': 'mean',
+                'whip': 'mean',
+                'k_per_9': 'mean',
+                'bb_per_9': 'mean'
+            }).add_prefix('away_')
+            
+            # Weather condition splits
+            warm_stats = group[group['temp'] > 70].agg({
+                'era': 'mean',
+                'whip': 'mean',
+                'k_per_9': 'mean',
+                'bb_per_9': 'mean'
+            }).add_prefix('warm_')
+            
+            cold_stats = group[group['temp'] <= 70].agg({
+                'era': 'mean',
+                'whip': 'mean',
+                'k_per_9': 'mean',
+                'bb_per_9': 'mean'
+            }).add_prefix('cold_')
+            
+            splits.append(pd.concat([home_stats, away_stats, warm_stats, cold_stats]))
+        
+        return pd.DataFrame(splits)
+
+    def create_features(self):
+        """Create all features for the dataset"""
+        print("Creating features...")
+        
+        # Load and prepare base data
+        games_df = pd.read_csv('history/games.csv')
+        player_stats_df = pd.read_csv('history/player_stats.csv')
+        
+        # Calculate matchup features
+        matchup_features = self.calculate_matchup_features(games_df)
+        
+        # Calculate team performance features
+        team_features = self.calculate_team_features(games_df)
+        
+        # Calculate venue features
+        venue_features = self.calculate_venue_features(games_df)
+        
+        # Calculate game context features
+        context_features = self.calculate_game_context_features(games_df)
+        
 if __name__ == "__main__":
     processor = BaseballDataProcessor()
     processed_data = processor.process_data()

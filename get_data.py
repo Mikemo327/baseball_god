@@ -352,8 +352,11 @@ def main():
     os.makedirs('history', exist_ok=True)
     
     # Set date range for data collection
-    start_date = '2025-04-06'  # Opening Day
-    end_date = datetime.now().strftime('%Y-%m-%d')
+    # start_date = '2025-04-06'  # Opening Day
+    # end_date = datetime.now().strftime('%Y-%m-%d')
+    start_date = '2024-09-01'  # Opening Day
+    end_date = '2025-04-07'
+
     
     print("Starting data collection...")
     
