@@ -1,0 +1,27 @@
+date,game_id,home_team,away_team,venue_id,home_runs,away_runs,home_win,venue_name,venue_city,venue_state,venue_country,venue_timezone,venue_latitude,venue_longitude,venue_altitude,temp,wind_speed,wind_direction,condition
+2025-04-06,778429,Nationals,Diamondbacks,3309,5,4,1,Nationals Park,Washington,District of Columbia,USA,America/New_York,38.872861,-77.007501,,59,,"14 mph, In From",Overcast
+2025-04-06,778443,Red Sox,Cardinals,3,5,4,1,Fenway Park,Boston,Massachusetts,USA,America/New_York,42.346456,-71.097441,,47,,"6 mph, L To",Overcast
+2025-04-06,778432,Red Sox,Cardinals,3,18,7,1,Fenway Park,Boston,Massachusetts,USA,America/New_York,42.346456,-71.097441,,53,,"2 mph, Out To",Partly Cloudy
+2025-04-06,778434,Phillies,Dodgers,2681,8,7,1,Citizens Bank Park,Philadelphia,Pennsylvania,USA,America/New_York,39.90539086,-75.16716957,,56,,"9 mph, In From",Cloudy
+2025-04-06,778428,Pirates,Yankees,31,5,4,1,PNC Park,Pittsburgh,Pennsylvania,USA,America/New_York,40.446904,-80.005753,,41,,"10 mph, L To",Overcast
+2025-04-06,778435,Mets,Blue Jays,3289,2,1,1,Citi Field,Flushing,New York,USA,America/New_York,40.75753012,-73.84559155,,52,,"9 mph, In From",Cloudy
+2025-04-06,778433,Tigers,White Sox,2394,4,3,1,Comerica Park,Detroit,Michigan,USA,America/Detroit,42.3391151,-83.048695,,45,,"7 mph, Out To",Partly Cloudy
+2025-04-06,778422,Royals,Orioles,7,4,1,1,Kauffman Stadium,Kansas City,Missouri,USA,America/Chicago,39.051567,-94.480483,,50,,"8 mph, In From",Partly Cloudy
+2025-04-06,778419,Twins,Astros,3312,7,9,0,Target Field,Minneapolis,Minnesota,USA,America/Chicago,44.981829,-93.277891,,52,,"10 mph, Out To",Sunny
+2025-04-06,778421,Brewers,Reds,32,8,2,1,American Family Field,Milwaukee,Wisconsin,USA,America/Chicago,43.02838,-87.97099,,67,,"0 mph,",Roof Closed
+2025-04-06,778430,Cubs,Padres,17,7,8,0,Wrigley Field,Chicago,Illinois,USA,America/Chicago,41.948171,-87.655503,,44,,"4 mph, In From",Sunny
+2025-04-06,778420,Rangers,Rays,5325,4,3,1,Globe Life Field,Arlington,Texas,USA,America/Chicago,32.747299,-97.081818,,74,,"0 mph,",Roof Closed
+2025-04-06,778423,Rockies,Athletics,19,12,5,1,Coors Field,Denver,Colorado,USA,America/Denver,39.756042,-104.994136,,52,,"10 mph, In From",Partly Cloudy
+2025-04-06,778427,Giants,Mariners,2395,5,4,1,Oracle Park,San Francisco,California,USA,America/Los_Angeles,37.778383,-122.389448,,60,,"8 mph, Out To",Partly Cloudy
+2025-04-06,778425,Angels,Guardians,1,6,2,1,Angel Stadium,Anaheim,California,USA,America/Los_Angeles,33.80019044,-117.8823996,,81,,"5 mph, Out To",Sunny
+2025-04-07,778424,Tigers,Yankees,2394,6,2,1,Comerica Park,Detroit,Michigan,USA,America/Detroit,42.3391151,-83.048695,,38,,"16 mph, Out To",Cloudy
+2025-04-07,778415,Pirates,Cardinals,31,8,4,1,PNC Park,Pittsburgh,Pennsylvania,USA,America/New_York,40.446904,-80.005753,,55,,"12 mph, Out To",Partly Cloudy
+2025-04-07,778418,Nationals,Dodgers,3309,6,4,1,Nationals Park,Washington,District of Columbia,USA,America/New_York,38.872861,-77.007501,,45,,"8 mph, In From",Cloudy
+2025-04-07,778426,Red Sox,Blue Jays,3,2,6,0,Fenway Park,Boston,Massachusetts,USA,America/New_York,42.346456,-71.097441,,38,,"4 mph, In From",Overcast
+2025-04-07,778416,Mets,Marlins,3289,2,0,1,Citi Field,Flushing,New York,USA,America/New_York,40.75753012,-73.84559155,,42,,"5 mph, In From",Cloudy
+2025-04-07,778411,Cubs,Rangers,17,7,0,1,Wrigley Field,Chicago,Illinois,USA,America/Chicago,41.948171,-87.655503,,34,,"17 mph, In From",Cloudy
+2025-04-07,778412,Royals,Twins,7,4,2,1,Kauffman Stadium,Kansas City,Missouri,USA,America/Chicago,39.051567,-94.480483,,52,,"14 mph, L To",Clear
+2025-04-07,778413,Diamondbacks,Orioles,15,1,5,0,Chase Field,Phoenix,Arizona,USA,America/Phoenix,33.445302,-112.066687,,82,,"2 mph, L To",Partly Cloudy
+2025-04-07,778405,Mariners,Astros,680,4,3,1,T-Mobile Park,Seattle,Washington,USA,America/Los_Angeles,47.591333,-122.33251,,52,,"0 mph,",Roof Closed
+2025-04-07,778410,Giants,Reds,2395,0,2,0,Oracle Park,San Francisco,California,USA,America/Los_Angeles,37.778383,-122.389448,,56,,"9 mph, Out To",Partly Cloudy
+2025-04-07,778414,Athletics,Padres,2529,4,5,0,Sutter Health Park,Sacramento,California,USA,America/Los_Angeles,38.57994,-121.51246,,67,,"7 mph, Out To",Partly Cloudy
