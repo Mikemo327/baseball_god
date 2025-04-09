@@ -112,7 +112,12 @@ class BaseballPredictions:
             probability = 1 - probability
         
         # Scale confidence based on how far from 0.5 the probability is
-        confidence = (probability - 0.5) * 2
+        # Use a more conservative scaling factor (0.8 instead of 2)
+        confidence = (probability - 0.5) * 0.8
+        
+        # Cap the maximum confidence at 0.85 (85%)
+        confidence = min(confidence, 0.85)
+        
         return round(confidence, 3)
 
     def predict_game(self, game_data: dict) -> dict:
@@ -124,9 +129,35 @@ class BaseballPredictions:
             away_runs_data = self.prepare_prediction_data(game_data, 'away_runs')
 
             # Make predictions
-            home_win_prob = float(self.models['winner'].predict_proba(winner_data)[0][1])
-            predicted_home_runs = float(self.models['home_runs'].predict(home_runs_data)[0])
-            predicted_away_runs = float(self.models['away_runs'].predict(away_runs_data)[0])
+            model_home_win_prob = float(self.models['winner'].predict_proba(winner_data)[0][1])
+            predicted_home_runs = round(float(self.models['home_runs'].predict(home_runs_data)[0]))
+            predicted_away_runs = round(float(self.models['away_runs'].predict(away_runs_data)[0]))
+            
+            # Ensure predicted score is never a tie
+            if predicted_home_runs == predicted_away_runs:
+                # If the model predicts a tie, adjust based on win probability
+                if model_home_win_prob > 0.5:
+                    predicted_home_runs += 1  # Home team wins by 1
+                else:
+                    predicted_away_runs += 1  # Away team wins by 1
+            
+            # Calculate win probability based on run differential
+            run_diff = predicted_home_runs - predicted_away_runs
+            run_diff_prob = 1 / (1 + np.exp(-0.5 * run_diff))  # Sigmoid function to convert run diff to probability
+            
+            # Combine model probability and run differential probability
+            home_win_prob = (model_home_win_prob + run_diff_prob) / 2
+            
+            # Ensure win probability aligns with run differential
+            if run_diff > 0 and home_win_prob < 0.5:
+                home_win_prob = 0.5 + (run_diff * 0.1)  # Add 10% per run difference
+            elif run_diff < 0 and home_win_prob > 0.5:
+                home_win_prob = 0.5 - (abs(run_diff) * 0.1)  # Subtract 10% per run difference
+            elif run_diff == 0:
+                home_win_prob = 0.5  # Even game should be 50/50
+                
+            # Cap probability between 0.05 and 0.95
+            home_win_prob = max(0.05, min(0.95, home_win_prob))
             
             # Calculate confidence
             confidence = self._calculate_confidence(home_win_prob)
@@ -138,9 +169,9 @@ class BaseballPredictions:
                 'home_team': game_data.get('home_team', ''),
                 'away_team': game_data.get('away_team', ''),
                 'home_win_probability': round(home_win_prob * 100, 1),
-                'predicted_home_runs': round(predicted_home_runs, 1),
-                'predicted_away_runs': round(predicted_away_runs, 1),
-                'predicted_total': round(predicted_home_runs + predicted_away_runs, 1),
+                'predicted_home_runs': predicted_home_runs,
+                'predicted_away_runs': predicted_away_runs,
+                'predicted_total': predicted_home_runs + predicted_away_runs,
                 'confidence': round(confidence * 100, 1)
             }
             

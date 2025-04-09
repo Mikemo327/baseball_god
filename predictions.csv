@@ -1,3 +1,2 @@
 game_id,date,home_team,away_team,home_win_probability,predicted_home_runs,predicted_away_runs,predicted_total,confidence
-778403,2025-04-09,Yankees,Tigers,99.1,2.7,2.9,5.5,98.2
-778403,2025-04-09,Cardinals,Pirates,98.8,3.0,3.8,6.8,97.7
+778403,2025-04-09,Yankees,Tigers,80.7,4,3,7,24.5

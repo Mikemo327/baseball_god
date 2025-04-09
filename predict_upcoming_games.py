@@ -140,7 +140,9 @@ def main():
             pred = predictor.predict_game(game)
             if pred:
                 # Calculate total runs and ensure all required fields exist
-                pred['total_runs'] = pred.get('predicted_home_runs', 0) + pred.get('predicted_away_runs', 0)
+                pred['predicted_home_runs'] = round(pred.get('predicted_home_runs', 0))  # Round to nearest integer
+                pred['predicted_away_runs'] = round(pred.get('predicted_away_runs', 0))  # Round to nearest integer
+                pred['total_runs'] = pred['predicted_home_runs'] + pred['predicted_away_runs']  # Sum of rounded values
                 pred['prediction_confidence'] = pred.get('prediction_confidence', 0.5)  # Default to 50% if missing
                 
                 # Normalize win probability
@@ -151,9 +153,62 @@ def main():
                 
                 print("\nPrediction Details:")
                 print(f"Home Win Probability: {pred['home_win_probability']:.1%}")
-                print(f"Predicted Score: {pred['away_team']} {pred.get('predicted_away_runs', 0):.1f} - {pred.get('predicted_home_runs', 0):.1f} {pred['home_team']}")
-                print(f"Total Runs: {pred['total_runs']:.1f}")
+                print(f"Predicted Score: {pred['away_team']} {pred['predicted_away_runs']} - {pred['predicted_home_runs']} {pred['home_team']}")
+                print(f"Total Runs: {pred['total_runs']}")
                 print(f"Prediction Confidence: {pred['prediction_confidence']:.1%}")
+                
+                # Get processed data for additional statistics
+                game_df = pd.DataFrame([{
+                    'game_id': game['game_id'],
+                    'date': game['date'],
+                    'home_team': game['home_team'],
+                    'away_team': game['away_team'],
+                    'venue_id': game['venue_id'],
+                    'temp': game['temp'],
+                    'wind_speed': game['wind_speed'],
+                    'condition': game['condition'],
+                    'home_pitcher_player_id': game['home_pitcher']['player_id'],
+                    'away_pitcher_player_id': game['away_pitcher']['player_id']
+                }])
+                
+                # Add batter information
+                for i, batter in enumerate(game['home_lineup'], 1):
+                    game_df[f'home_batter{i}_player_id'] = batter['player_id']
+                
+                for i, batter in enumerate(game['away_lineup'], 1):
+                    game_df[f'away_batter{i}_player_id'] = batter['player_id']
+                
+                # Process game data
+                processed_data = predictor.data_processor.process_game(game_df)
+                
+                # Print pitcher and batter statistics
+                print("\nPitcher Statistics:")
+                try:
+                    def format_stat(stat_series, format_str='.3f'):
+                        if stat_series is None or stat_series.empty or pd.isna(stat_series.iloc[0]):
+                            return 'N/A'
+                        try:
+                            return f"{stat_series.iloc[0]:{format_str}}"
+                        except:
+                            return 'N/A'
+                    
+                    print(f"LHP ERA: {format_stat(processed_data.get('lhp_era'))}")
+                    print(f"RHP ERA: {format_stat(processed_data.get('rhp_era'))}")
+                    print(f"LHP WHIP: {format_stat(processed_data.get('lhp_whip'))}")
+                    print(f"RHP WHIP: {format_stat(processed_data.get('rhp_whip'))}")
+                    print(f"LHP K/9: {format_stat(processed_data.get('lhp_k_per_9'), '.2f')}")
+                    print(f"RHP K/9: {format_stat(processed_data.get('rhp_k_per_9'), '.2f')}")
+                except Exception as e:
+                    print("Error displaying pitcher statistics:", str(e))
+                
+                print("\nBatter Statistics:")
+                try:
+                    print(f"LHB Batting Avg: {format_stat(processed_data.get('lhb_batting_avg'))}")
+                    print(f"RHB Batting Avg: {format_stat(processed_data.get('rhb_batting_avg'))}")
+                    print(f"LHB OPS: {format_stat(processed_data.get('lhb_ops'))}")
+                    print(f"RHB OPS: {format_stat(processed_data.get('rhb_ops'))}")
+                except Exception as e:
+                    print("Error displaying batter statistics:", str(e))
                 
                 # Add betting analysis
                 print("\nBetting Analysis:")

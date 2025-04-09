@@ -1,0 +1,31 @@
+game_id,team,is_home,position,player_id,player_name,pitcher_hand,pitcher_era,pitcher_so
+778389,Cardinals,False,P,607200,Erick Fedde,RHP,7.00,3
+778389,Pirates,True,P,656605,Mitch Keller,RHP,7.45,8
+778390,Marlins,False,P,676974,Max Meyer,RHP,3.09,15
+778390,Mets,True,P,656731,Tylor Megill,RHP,0.87,10
+778387,Yankees,False,P,608331,Max Fried,LHP,2.61,10
+778387,Tigers,True,P,656427,Jack Flaherty,RHP,2.38,12
+778385,Rangers,False,P,641816,Tyler Mahle,RHP,1.35,8
+778385,Cubs,True,P,684007,Shota Imanaga,LHP,0.98,10
+778381,Padres,False,P,681190,Randy Vásquez,RHP,1.69,5
+778381,Athletics,True,P,674370,Osvaldo Bido,RHP,2.70,9
+778380,Orioles,False,P,665152,Dean Kremer,RHP,6.52,7
+778380,D-backs,True,P,694297,Brandon Pfaadt,RHP,5.25,9
+778376,Reds,False,P,607259,Nick Martinez,RHP,5.91,7
+778376,Giants,True,P,434378,Justin Verlander,RHP,6.14,7
+778392,Dodgers,False,P,689017,Landon Knack,RHP,0.00,3
+778392,Nationals,True,P,663623,Jake Irvin,RHP,5.40,5
+778383,Astros,False,P,686613,Hunter Brown,RHP,3.00,15
+778383,Mariners,True,P,622379,Luis F. Castillo,RHP,9.00,2
+778391,White Sox,False,P,680732,Sean Burke,RHP,5.23,4
+778391,Guardians,True,P,671106,Logan Allen,LHP,6.75,1
+778386,Blue Jays,False,P,592332,Kevin Gausman,RHP,3.97,4
+778386,Red Sox,True,P,656557,Tanner Houck,RHP,6.52,8
+778399,Angels,False,P,579328,Yusei Kikuchi,LHP,4.50,11
+778399,Rays,True,P,686752,Ryan Pepiot,RHP,2.45,11
+778393,Phillies,False,P,592836,Taijuan Walker,RHP,0.00,4
+778393,Braves,True,P,656550,Grant Holmes,RHP,7.20,5
+778388,Twins,False,P,657746,Joe Ryan,RHP,4.50,11
+778388,Royals,True,P,607625,Seth Lugo,RHP,3.27,6
+778379,Brewers,False,P,641302,Tyler Alexander,LHP,2.00,9
+778379,Rockies,True,P,622608,Antonio Senzatela,RHP,0.00,3

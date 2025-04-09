@@ -150,7 +150,7 @@ def main():
     # Load upcoming games from CSV
     print("\nLoading upcoming games...")
     try:
-        games_df = pd.read_csv('upcoming_games_template.csv')
+        games_df = pd.read_csv('upcoming_games.csv')
         print(f"Loaded {len(games_df)} games")
         
         # Process each game

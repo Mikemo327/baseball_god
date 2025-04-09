@@ -722,6 +722,40 @@ class BaseballDataProcessor:
             features['venue_std_total_runs'] = self.games_df['home_runs'].std()
             features['venue_park_factor'] = 1.0
         
+        # Add pitcher and batter statistics
+        # Get pitcher and batter stats from player_stats
+        if self.player_stats_df is not None:
+            pitcher_stats = self.player_stats_df[self.player_stats_df['position'] == 'P']
+            batter_stats = self.player_stats_df[self.player_stats_df['position'] != 'P']
+            
+            # Get pitchers and batters for this game
+            home_pitcher_id = game_df['home_pitcher_player_id'].iloc[0]
+            away_pitcher_id = game_df['away_pitcher_player_id'].iloc[0]
+            
+            # Get pitcher stats
+            home_pitcher_stats = pitcher_stats[pitcher_stats['player_id'] == home_pitcher_id]
+            away_pitcher_stats = pitcher_stats[pitcher_stats['player_id'] == away_pitcher_id]
+            
+            # Calculate LHP/RHP stats
+            lhp_stats = pitcher_stats[pitcher_stats['throw_arm'] == 'L']
+            rhp_stats = pitcher_stats[pitcher_stats['throw_arm'] == 'R']
+            
+            # Calculate batter stats by handedness
+            lhb_stats = batter_stats[batter_stats['bat_side'] == 'L']
+            rhb_stats = batter_stats[batter_stats['bat_side'] == 'R']
+            
+            # Add pitcher and batter statistics
+            features['lhp_era'] = lhp_stats['era'].mean() if len(lhp_stats) > 0 else None
+            features['rhp_era'] = rhp_stats['era'].mean() if len(rhp_stats) > 0 else None
+            features['lhp_whip'] = lhp_stats['whip'].mean() if len(lhp_stats) > 0 else None
+            features['rhp_whip'] = rhp_stats['whip'].mean() if len(rhp_stats) > 0 else None
+            features['lhp_k_per_9'] = lhp_stats['k_per_9'].mean() if len(lhp_stats) > 0 else None
+            features['rhp_k_per_9'] = rhp_stats['k_per_9'].mean() if len(rhp_stats) > 0 else None
+            features['lhb_batting_avg'] = lhb_stats['batting_avg'].mean() if len(lhb_stats) > 0 else None
+            features['rhb_batting_avg'] = rhb_stats['batting_avg'].mean() if len(rhb_stats) > 0 else None
+            features['lhb_ops'] = lhb_stats['ops'].mean() if len(lhb_stats) > 0 else None
+            features['rhb_ops'] = rhb_stats['ops'].mean() if len(rhb_stats) > 0 else None
+        
         # Normalize features
         features = self.normalize_features(features)
         
