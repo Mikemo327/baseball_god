@@ -1,0 +1,2 @@
+game_id,date,home_team,away_team,home_win_probability,predicted_home_runs,predicted_away_runs,predicted_total,confidence,total_runs,prediction_confidence
+778403,2025-04-09,Yankees,Tigers,0.804,3.6,6.1,9.7,60.8,9.7,0.5

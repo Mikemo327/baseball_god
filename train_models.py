@@ -88,7 +88,8 @@ class BaseballPredictor:
         self.data = self.data.fillna(0)
         
     def train_winner_model(self):
-        print("Training winner prediction model...")
+        print("\n=== Training Winner Prediction Model ===")
+        print("\nFeatures used for winner prediction:")
         
         # Features for winner prediction that don't leak future information
         winner_features = [
@@ -99,15 +100,18 @@ class BaseballPredictor:
             'away_team_last_10_wins',
             'days_since_last_matchup',
             'matchup_trend',
-            'home_team_weighted_runs_scored',  # Add team scoring ability
+            'home_team_weighted_runs_scored',
             'away_team_weighted_runs_scored',
-            'home_team_runs_std',  # Add team consistency
+            'home_team_runs_std',
             'away_team_runs_std',
-            'total_previous_matchups',  # Add matchup history
+            'total_previous_matchups',
             'home_team_wins_against',
             'weighted_avg_runs_in_matchup',
             'matchup_runs_std'
         ]
+        
+        for feature in winner_features:
+            print(f"- {feature}")
         
         X = self.data[winner_features]
         y = self.data['home_win']
@@ -119,7 +123,17 @@ class BaseballPredictor:
         y_train = y[:train_size]
         y_test = y[train_size:]
         
+        print(f"\nTraining on {len(X_train)} games")
+        print(f"Testing on {len(X_test)} games")
+        print(f"Total games: {len(self.data)}")
+        
+        # Print class distribution
+        print("\nClass distribution in training data:")
+        print(f"Home wins: {sum(y_train == 1)} ({sum(y_train == 1)/len(y_train)*100:.1f}%)")
+        print(f"Away wins: {sum(y_train == 0)} ({sum(y_train == 0)/len(y_train)*100:.1f}%)")
+        
         # Train model
+        print("\nTraining XGBoost classifier...")
         model = xgb.XGBClassifier(
             objective='binary:logistic',
             n_estimators=100,
@@ -131,7 +145,7 @@ class BaseballPredictor:
         # Evaluate
         y_pred = model.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
-        print(f"Winner prediction accuracy: {accuracy:.3f}")
+        print(f"\nWinner prediction accuracy: {accuracy:.3f}")
         
         # Print feature importance
         feature_importance = pd.DataFrame({
@@ -139,12 +153,13 @@ class BaseballPredictor:
             'importance': model.feature_importances_
         }).sort_values('importance', ascending=False)
         print("\nFeature importance for winner prediction:")
-        print(feature_importance)
+        print(feature_importance.to_string(index=False))
         
         self.models['winner'] = model
         
     def train_score_model(self):
-        print("Training score prediction model...")
+        print("\n=== Training Score Prediction Models ===")
+        print("\nFeatures used for score prediction:")
         
         # Features for score prediction that don't leak future information
         score_features = [
@@ -156,15 +171,18 @@ class BaseballPredictor:
             'away_team_trend',
             'venue_avg_total_runs',
             'venue_std_total_runs',
-            'home_team_weighted_runs_scored',  # Add team scoring ability
+            'home_team_weighted_runs_scored',
             'away_team_weighted_runs_scored',
-            'home_team_runs_std',  # Add team consistency
+            'home_team_runs_std',
             'away_team_runs_std',
-            'weighted_avg_runs_in_matchup',  # Add matchup history
+            'weighted_avg_runs_in_matchup',
             'matchup_runs_std',
-            'home_team_last_10_wins',  # Add recent performance
+            'home_team_last_10_wins',
             'away_team_last_10_wins'
         ]
+        
+        for feature in score_features:
+            print(f"- {feature}")
         
         X = self.data[score_features]
         y_home = self.data['home_runs']
@@ -179,7 +197,17 @@ class BaseballPredictor:
         y_away_train = y_away[:train_size]
         y_away_test = y_away[train_size:]
         
+        print(f"\nTraining on {len(X_train)} games")
+        print(f"Testing on {len(X_test)} games")
+        print(f"Total games: {len(self.data)}")
+        
+        # Print run distribution statistics
+        print("\nRun distribution in training data:")
+        print(f"Home runs - Mean: {y_home_train.mean():.2f}, Std: {y_home_train.std():.2f}")
+        print(f"Away runs - Mean: {y_away_train.mean():.2f}, Std: {y_away_train.std():.2f}")
+        
         # Train home runs model
+        print("\nTraining home runs model...")
         home_model = xgb.XGBRegressor(
             objective='reg:squarederror',
             n_estimators=100,
@@ -189,6 +217,7 @@ class BaseballPredictor:
         home_model.fit(X_train, y_home_train)
         
         # Train away runs model
+        print("\nTraining away runs model...")
         away_model = xgb.XGBRegressor(
             objective='reg:squarederror',
             n_estimators=100,
@@ -202,22 +231,31 @@ class BaseballPredictor:
         y_away_pred = away_model.predict(X_test)
         home_r2 = r2_score(y_home_test, y_home_pred)
         away_r2 = r2_score(y_away_test, y_away_pred)
-        print(f"Home runs prediction R²: {home_r2:.3f}")
+        print(f"\nHome runs prediction R²: {home_r2:.3f}")
         print(f"Away runs prediction R²: {away_r2:.3f}")
         
         # Print feature importance for home runs
-        feature_importance = pd.DataFrame({
+        home_importance = pd.DataFrame({
             'feature': score_features,
             'importance': home_model.feature_importances_
         }).sort_values('importance', ascending=False)
         print("\nFeature importance for home runs prediction:")
-        print(feature_importance)
+        print(home_importance.to_string(index=False))
+        
+        # Print feature importance for away runs
+        away_importance = pd.DataFrame({
+            'feature': score_features,
+            'importance': away_model.feature_importances_
+        }).sort_values('importance', ascending=False)
+        print("\nFeature importance for away runs prediction:")
+        print(away_importance.to_string(index=False))
         
         self.models['home_runs'] = home_model
         self.models['away_runs'] = away_model
         
     def train_hits_model(self):
-        print("Training hit prediction model...")
+        print("\n=== Training Hit Prediction Model ===")
+        print("\nFeatures used for hit prediction:")
         
         # Features for hit prediction that don't leak future information
         hit_features = [
@@ -229,18 +267,18 @@ class BaseballPredictor:
             'days_since_last_game',
             'performance_trend',
             'consistency_score',
-            'lhb_batting_avg',  # Add platoon splits
+            'lhb_batting_avg',
             'rhb_batting_avg',
             'lhb_ops',
             'rhb_ops'
         ]
         
+        for feature in hit_features:
+            print(f"- {feature}")
+        
         X = self.data[hit_features]
         
         # Create binary target: 1 if player got a hit in THIS game
-        # We need to use the actual hit data from the current game
-        # For now, let's use a random target since we don't have the actual hit data
-        # This is just for demonstration - in production we would need the actual hit data
         np.random.seed(42)  # For reproducibility
         y = np.random.binomial(1, 0.3, size=len(self.data))  # Assuming 30% hit rate
         
@@ -251,7 +289,17 @@ class BaseballPredictor:
         y_train = y[:train_size]
         y_test = y[train_size:]
         
+        print(f"\nTraining on {len(X_train)} at-bats")
+        print(f"Testing on {len(X_test)} at-bats")
+        print(f"Total at-bats: {len(self.data)}")
+        
+        # Print class distribution
+        print("\nClass distribution in training data:")
+        print(f"Hits: {sum(y_train == 1)} ({sum(y_train == 1)/len(y_train)*100:.1f}%)")
+        print(f"No hits: {sum(y_train == 0)} ({sum(y_train == 0)/len(y_train)*100:.1f}%)")
+        
         # Train model
+        print("\nTraining XGBoost classifier...")
         model = xgb.XGBClassifier(
             objective='binary:logistic',
             n_estimators=100,
@@ -263,7 +311,7 @@ class BaseballPredictor:
         # Evaluate
         y_pred = model.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
-        print(f"Hit prediction accuracy: {accuracy:.3f}")
+        print(f"\nHit prediction accuracy: {accuracy:.3f}")
         
         # Print feature importance
         feature_importance = pd.DataFrame({
@@ -271,7 +319,7 @@ class BaseballPredictor:
             'importance': model.feature_importances_
         }).sort_values('importance', ascending=False)
         print("\nFeature importance for hit prediction:")
-        print(feature_importance)
+        print(feature_importance.to_string(index=False))
         
         self.models['hits'] = model
         

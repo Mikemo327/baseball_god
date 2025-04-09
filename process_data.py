@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Tuple
 import os
 from scipy import stats
+from tqdm import tqdm
 
 class BaseballDataProcessor:
     def __init__(self):
@@ -14,9 +15,11 @@ class BaseballDataProcessor:
     def load_data(self):
         """Load the raw data from CSV files."""
         try:
+            print("Loading data files...")
             self.games_df = pd.read_csv('history/games.csv')
             self.player_stats_df = pd.read_csv('history/player_stats.csv')
-            print("Data loaded successfully")
+            print("✓ Data loaded successfully")
+            return self
         except Exception as e:
             print(f"Error loading data: {e}")
             raise
@@ -28,7 +31,8 @@ class BaseballDataProcessor:
         # Sort games by date
         games_sorted = self.games_df.sort_values('date')
         
-        for idx, game in games_sorted.iterrows():
+        print("Creating matchup features...")
+        for idx, game in tqdm(games_sorted.iterrows(), total=len(games_sorted), desc="Processing matchups"):
             home_team = game['home_team']
             away_team = game['away_team']
             game_date = pd.to_datetime(game['date'])
@@ -73,7 +77,8 @@ class BaseballDataProcessor:
         # Sort player stats by date
         player_stats_sorted = self.player_stats_df.sort_values('date')
         
-        for idx, player_stat in player_stats_sorted.iterrows():
+        print("Creating player features...")
+        for idx, player_stat in tqdm(player_stats_sorted.iterrows(), total=len(player_stats_sorted), desc="Processing players"):
             player_id = player_stat['player_id']
             game_date = pd.to_datetime(player_stat['date'])
             
@@ -382,13 +387,63 @@ class BaseballDataProcessor:
 
     def process_data(self) -> pd.DataFrame:
         """Main method to process all data."""
-        print("Loading data...")
+        print("\n=== Starting Data Processing ===\n")
+        
+        print("Step 1: Loading data...")
         self.load_data()
         
-        print("Creating features...")
-        self.processed_data = self.merge_all_features()
+        print("\nStep 2: Creating features...")
+        with tqdm(total=6, desc="Feature creation progress") as pbar:
+            print("\nCreating matchup features...")
+            matchup_features = self.create_matchup_features()
+            pbar.update(1)
+            
+            print("\nCreating player features...")
+            player_features = self.create_player_features()
+            pbar.update(1)
+            
+            print("\nCreating team features...")
+            team_features = self.create_team_features()
+            pbar.update(1)
+            
+            print("\nCreating game features...")
+            game_features = self.create_game_features()
+            pbar.update(1)
+            
+            print("\nCreating venue features...")
+            venue_features = self.create_venue_features()
+            pbar.update(1)
+            
+            print("\nCreating pitcher-batter features...")
+            pitcher_batter_features = self.create_pitcher_batter_features()
+            pbar.update(1)
         
-        print("Data processing complete!")
+        print("\nStep 3: Merging features...")
+        with tqdm(total=6, desc="Merging progress") as pbar:
+            # Merge with original games data
+            final_dataset = self.games_df.merge(matchup_features, on='game_id', how='left')
+            pbar.update(1)
+            
+            final_dataset = final_dataset.merge(team_features, on='game_id', how='left')
+            pbar.update(1)
+            
+            final_dataset = final_dataset.merge(game_features, on='game_id', how='left')
+            pbar.update(1)
+            
+            final_dataset = final_dataset.merge(venue_features, on='game_id', how='left')
+            pbar.update(1)
+            
+            final_dataset = final_dataset.merge(pitcher_batter_features, on='game_id', how='left')
+            pbar.update(1)
+            
+            # Merge player features
+            final_dataset = final_dataset.merge(player_features, on='game_id', how='left')
+            pbar.update(1)
+        
+        self.processed_data = final_dataset
+        print("\n✓ Data processing complete!")
+        print(f"Total rows in processed dataset: {len(final_dataset):,}")
+        print(f"Total features created: {len(final_dataset.columns):,}")
         return self.processed_data
 
     def calculate_pitcher_batter_matchups(self, df):
@@ -496,6 +551,182 @@ class BaseballDataProcessor:
         # Calculate game context features
         context_features = self.calculate_game_context_features(games_df)
         
+    def normalize_features(self, features):
+        """
+        Normalize numerical features to a standard scale.
+        
+        Args:
+            features (pd.DataFrame): DataFrame containing features to normalize
+            
+        Returns:
+            pd.DataFrame: DataFrame with normalized numerical features
+        """
+        # Create a copy of the features DataFrame
+        normalized_features = features.copy()
+        
+        # Define features with known ranges
+        feature_ranges = {
+            'weighted_avg_runs_in_matchup': (0, 20),
+            'matchup_runs_std': (0, 10),
+            'matchup_trend': (-1, 1),
+            'days_since_last_matchup': (0, 365),
+            'venue_avg_total_runs': (0, 20),
+            'venue_std_total_runs': (0, 10),
+            'venue_park_factor': (0.5, 1.5),
+            'home_team_last_10_wins': (0, 10),
+            'away_team_last_10_wins': (0, 10),
+            'home_team_weighted_runs_scored': (0, 20),
+            'away_team_weighted_runs_scored': (0, 20),
+            'home_team_runs_std': (0, 10),
+            'away_team_runs_std': (0, 10),
+            'home_team_trend': (-1, 1),
+            'away_team_trend': (-1, 1),
+            'total_previous_matchups': (0, 50),
+            'home_team_wins_against': (0, 50)
+        }
+        
+        # First normalize features with known ranges
+        for feature, (min_val, max_val) in feature_ranges.items():
+            if feature in normalized_features.columns:
+                normalized_features[feature] = normalized_features[feature].apply(
+                    lambda x: (x - min_val) / (max_val - min_val) if pd.notnull(x) else x
+                )
+                normalized_features[feature] = normalized_features[feature].clip(0, 1)
+        
+        # Then normalize remaining numerical features using min-max scaling
+        numerical_columns = normalized_features.select_dtypes(include=['int64', 'float64']).columns
+        for col in numerical_columns:
+            if col not in feature_ranges and col not in ['game_id', 'date']:
+                min_val = normalized_features[col].min()
+                max_val = normalized_features[col].max()
+                if min_val != max_val:  # Avoid division by zero
+                    normalized_features[col] = (normalized_features[col] - min_val) / (max_val - min_val)
+        
+        return normalized_features
+
+    def process_game(self, game_df: pd.DataFrame) -> pd.DataFrame:
+        """Process a single game for prediction"""
+        # Load historical data if not already loaded
+        if self.games_df is None:
+            self.load_data()
+        
+        # Create features for the game
+        features = pd.DataFrame()
+        
+        # Add basic game features
+        features['game_id'] = game_df['game_id']
+        features['date'] = game_df['date']
+        features['home_team'] = game_df['home_team']
+        features['away_team'] = game_df['away_team']
+        features['venue_id'] = game_df['venue_id']
+        features['temp'] = game_df['temp']
+        features['wind_speed'] = game_df['wind_speed']
+        features['condition'] = game_df['condition']
+        
+        # Add pitcher features
+        features['home_pitcher_id'] = game_df['home_pitcher_player_id']
+        features['away_pitcher_id'] = game_df['away_pitcher_player_id']
+        
+        # Add batter features
+        for i in range(1, 10):
+            features[f'home_batter{i}_id'] = game_df[f'home_batter{i}_player_id']
+            features[f'away_batter{i}_id'] = game_df[f'away_batter{i}_player_id']
+        
+        # Get team historical performance
+        home_team_games = self.games_df[
+            (self.games_df['home_team'] == game_df['home_team'].iloc[0]) |
+            (self.games_df['away_team'] == game_df['home_team'].iloc[0])
+        ].sort_values('date').tail(10)
+        
+        away_team_games = self.games_df[
+            (self.games_df['home_team'] == game_df['away_team'].iloc[0]) |
+            (self.games_df['away_team'] == game_df['away_team'].iloc[0])
+        ].sort_values('date').tail(10)
+        
+        # Calculate team performance metrics
+        home_team_runs = home_team_games.apply(
+            lambda x: x['home_runs'] if x['home_team'] == game_df['home_team'].iloc[0] else x['away_runs'], axis=1
+        )
+        away_team_runs = away_team_games.apply(
+            lambda x: x['home_runs'] if x['home_team'] == game_df['away_team'].iloc[0] else x['away_runs'], axis=1
+        )
+        
+        # Add team performance features
+        features['home_team_last_10_wins'] = len(home_team_games[
+            ((home_team_games['home_team'] == game_df['home_team'].iloc[0]) & (home_team_games['home_win'] == 1)) |
+            ((home_team_games['away_team'] == game_df['home_team'].iloc[0]) & (home_team_games['home_win'] == 0))
+        ])
+        features['away_team_last_10_wins'] = len(away_team_games[
+            ((away_team_games['home_team'] == game_df['away_team'].iloc[0]) & (away_team_games['home_win'] == 1)) |
+            ((away_team_games['away_team'] == game_df['away_team'].iloc[0]) & (away_team_games['home_win'] == 0))
+        ])
+        
+        # Calculate weighted team performance
+        home_weights = np.linspace(1, 0.1, len(home_team_runs)) if len(home_team_runs) > 0 else np.array([])
+        away_weights = np.linspace(1, 0.1, len(away_team_runs)) if len(away_team_runs) > 0 else np.array([])
+        
+        if len(home_weights) > 0:
+            home_weights = home_weights / home_weights.sum()
+        if len(away_weights) > 0:
+            away_weights = away_weights / away_weights.sum()
+        
+        features['home_team_weighted_runs_scored'] = np.average(home_team_runs, weights=home_weights) if len(home_team_runs) > 0 else 0
+        features['away_team_weighted_runs_scored'] = np.average(away_team_runs, weights=away_weights) if len(away_team_runs) > 0 else 0
+        features['home_team_runs_std'] = home_team_runs.std() if len(home_team_runs) > 0 else 0
+        features['away_team_runs_std'] = away_team_runs.std() if len(away_team_runs) > 0 else 0
+        features['home_team_trend'] = self._calculate_trend(home_team_runs) if len(home_team_runs) > 0 else 0
+        features['away_team_trend'] = self._calculate_trend(away_team_runs) if len(away_team_runs) > 0 else 0
+        
+        # Get historical matchup data
+        previous_matchups = self.games_df[
+            (self.games_df['date'] < game_df['date'].iloc[0]) &
+            (((self.games_df['home_team'] == game_df['home_team'].iloc[0]) & 
+              (self.games_df['away_team'] == game_df['away_team'].iloc[0])) |
+             ((self.games_df['home_team'] == game_df['away_team'].iloc[0]) & 
+              (self.games_df['away_team'] == game_df['home_team'].iloc[0])))
+        ].tail(10)
+        
+        # Add matchup features
+        features['total_previous_matchups'] = len(previous_matchups)
+        features['home_team_wins_against'] = len(previous_matchups[
+            ((previous_matchups['home_team'] == game_df['home_team'].iloc[0]) & (previous_matchups['home_win'] == 1)) |
+            ((previous_matchups['away_team'] == game_df['home_team'].iloc[0]) & (previous_matchups['home_win'] == 0))
+        ])
+        
+        if len(previous_matchups) > 0:
+            matchup_runs = previous_matchups['home_runs'] + previous_matchups['away_runs']
+            weights = np.linspace(1, 0.1, len(previous_matchups))
+            weights = weights / weights.sum()
+            features['weighted_avg_runs_in_matchup'] = np.average(matchup_runs, weights=weights)
+            features['matchup_runs_std'] = matchup_runs.std()
+            features['matchup_trend'] = self._calculate_trend(matchup_runs)
+            features['last_matchup_date'] = previous_matchups['date'].iloc[-1]
+            features['days_since_last_matchup'] = (pd.to_datetime(game_df['date'].iloc[0]) - 
+                                                 pd.to_datetime(previous_matchups['date'].iloc[-1])).days
+        else:
+            features['weighted_avg_runs_in_matchup'] = 0
+            features['matchup_runs_std'] = 0
+            features['matchup_trend'] = 0
+            features['last_matchup_date'] = None
+            features['days_since_last_matchup'] = None
+        
+        # Create venue features
+        venue_games = self.games_df[self.games_df['venue_id'] == game_df['venue_id'].iloc[0]]
+        if len(venue_games) > 0:
+            venue_runs = venue_games['home_runs'] + venue_games['away_runs']
+            features['venue_avg_total_runs'] = venue_runs.mean()
+            features['venue_std_total_runs'] = venue_runs.std()
+            features['venue_park_factor'] = venue_runs.mean() / self.games_df['home_runs'].mean()
+        else:
+            features['venue_avg_total_runs'] = self.games_df['home_runs'].mean()
+            features['venue_std_total_runs'] = self.games_df['home_runs'].std()
+            features['venue_park_factor'] = 1.0
+        
+        # Normalize features
+        features = self.normalize_features(features)
+        
+        return features
+
 if __name__ == "__main__":
     processor = BaseballDataProcessor()
     processed_data = processor.process_data()
